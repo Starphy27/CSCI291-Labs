@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 
 // defining variables
 char coff_typ[20];
@@ -9,10 +10,8 @@ int main(){
     printf("Enter a coffee type (espresso, cappuccino, mocha): \n");
     scanf("%19s", coff_typ);
     
-    for (int i = 0; coff_typ[i]; i++) {  // change to while loop 
-        coff_typ[i] = tolower(coff_typ[i]);
-    }
-
+    strlwr(coff_typ);
+    
     if (strcmp(coff_typ, "espresso")== 0){
         printf("One espresso on the way!\n");
     }
