@@ -38,9 +38,6 @@ int choc_amnt = 100;
 float tot_sales = 0.0;
 float sales;
 float price; 
-int ESP_Orders = 0;
-int CAP_Orders = 0;
-int MOC_Orders = 0;
 int refill_beans, refill_water, refill_milk, refill_choc;
 // function prototype 
 void ingredients_refill();
@@ -144,6 +141,36 @@ void user_order()
 
 
 int main(){
+while (true) // infinite loop
+{
+    int choice;
+    printf("Welcome to our coffee shop!\n");
+    printf("1) Admin menu\n");
+    printf("2) Customer menu\n");
+    printf("3) Exit\n");
+    printf("Enter your choice: \n");
+    scanf("%d", &choice);
+
+    switch (choice)
+    {
+        case 1:
+            admin_op();
+            break;
+
+        case 2:
+            menu();
+            user_order();
+            break;
+
+        case 3:
+            printf("Exiting...\n");
+            return 0;
+
+        default:
+            printf("Invalid choice! Please try again.\n");
+    }
+}
+
 
     return 0; 
 }
@@ -179,19 +206,14 @@ void low_ingredients()
     }
 }
 // function prototype
-/*float tot_sales();
+void tot_sales();
 // function definition 
-float tot_sales(int ESP_Orders, int CAP_Orders, int MOC_Orders)
+void tot_sales()
 {
-    tot_sales = (ESP_Orders * ESP_PRICE) + (CAP_Orders * CAP_PRICE) + (MOC_Orders * MOC_PRICE);
-    return tot_sales;
-}
-{
+    
+
 
 }
-*/
-
-
 
 
 void coff_availability(); // function prototype
