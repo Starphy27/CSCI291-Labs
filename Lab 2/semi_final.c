@@ -38,6 +38,7 @@ int choc_amnt = 100;
 float tot_sales = 0.0;
 float sales;
 float price; 
+int choice;
 int refill_beans, refill_water, refill_milk, refill_choc;
 // function prototype 
 void ingredients_refill();
@@ -69,6 +70,14 @@ void ingredients_refill()
     printf("Chocolate syrup: %d ml\n", choc_amnt);
 }
 
+void update_ingredients(int beans, int water, int milk, int choc); //prototype{
+void update_ingredients(int beans, int water, int milk, int choc)
+{
+    beans_amnt -= beans; // Deduct beans
+    water_amnt -= water; // Deduct water
+    milk_amnt -= milk; // Deduct milk
+    choc_amnt -= choc; // Deduct syrup
+}
 
 
 void admin_op(); //prototype
@@ -141,8 +150,8 @@ void user_order()
 
 
 int main(){
-while (true) // infinite loop
-{
+    while (true) // infinite loop
+    {
     int choice;
     printf("Welcome to our coffee shop!\n");
     printf("1) Admin menu\n");
@@ -155,6 +164,7 @@ while (true) // infinite loop
     {
         case 1:
             admin_op();
+
             break;
 
         case 2:
@@ -206,14 +216,14 @@ void low_ingredients()
     }
 }
 // function prototype
-void tot_sales();
+//void tot_sales();
 // function definition 
-void tot_sales()
-{
+//void tot_sales()
+//{
     
+//return 0;
 
-
-}
+//}
 
 
 void coff_availability(); // function prototype
