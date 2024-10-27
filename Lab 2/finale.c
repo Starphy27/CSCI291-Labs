@@ -126,7 +126,7 @@ void admin_menu() {
                 printf("Water: %d ml\n", water_amnt);
                 printf("Milk: %d ml\n", milk_amnt);
                 printf("Chocolate syrup: %d ml\n", choc_amnt);
-                printf("Total sales: %.2f AED\n", total_amount);
+                printf("Total sales: %.2f AED\n", tot_sales);
                 break;
             case 2:
                 replenish_ingredients();
