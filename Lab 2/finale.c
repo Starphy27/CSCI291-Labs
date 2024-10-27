@@ -1,3 +1,4 @@
+// needed directives
 #include <stdio.h>
 #include <time.h>
 #include <stdbool.h>
@@ -40,43 +41,20 @@ int choice;
 int refill_beans, refill_water, refill_milk, refill_choc;
 
 // Function prototypes
-void ingredients_refill();
-void update_ingredients(int beans, int water, int milk, int choc);
-void admin_op();
-void menu();
-void user_order();
-void low_ingredients();
-void coff_availability();
-void admin_menu();
-void replenish_ingredients();
-void change_coffee_price();
+void ingredients_refill(); // Function to refill ingredients
+void update_ingredients(int beans, int water, int milk, int choc); // Function to update ingredient quantities
+void admin_op(); // Function to enter admin mode
+void menu(); // Function to display coffee menu
+void user_order(); // Function to take user's coffee order
+void low_ingredients(); // Function to check if any ingredient is low
+void coff_availability(); // Function to show available coffee options
+void admin_menu(); // Function to display admin menu
+void replenish_ingredients(); // Function to replenish ingredients
+void change_coffee_price(); // Function to change coffee prices
+void display_and_reset_sales(); // Function to display total sales and reset it
 
-// Function definitions
-void ingredients_refill() {
-    printf("Enter the quantity of coffee beans to refill (in g): \n");
-    scanf("%d", &refill_beans);
-    beans_amnt += refill_beans;
-
-    printf("Enter the quantity of water to refill (in ml): \n");
-    scanf("%d", &refill_water);
-    water_amnt += refill_water;
-
-    printf("Enter the quantity of milk to refill (in ml): \n");
-    scanf("%d", &refill_milk);
-    milk_amnt += refill_milk;
-
-    printf("Enter the quantity of chocolate syrup to refill (in ml): \n");
-    scanf("%d", &refill_choc);
-    choc_amnt += refill_choc;
-
-    printf("Refill successful!\n");
-    printf("Current stock: \n");
-    printf("Coffee beans: %d g\n", beans_amnt);
-    printf("Water: %d ml\n", water_amnt);
-    printf("Milk: %d ml\n", milk_amnt);
-    printf("Chocolate syrup: %d ml\n", choc_amnt);
-}
-
+// Function Definitions
+// Updates ingredients quantities based on the coffee choice
 void update_ingredients(int beans, int water, int milk, int choc) {
     beans_amnt -= beans;
     water_amnt -= water;
@@ -84,6 +62,7 @@ void update_ingredients(int beans, int water, int milk, int choc) {
     choc_amnt -= choc;
 }
 
+// Admin password checker
 void admin_op() {
     int password;
     printf("Enter the admin password: \n");
@@ -100,6 +79,7 @@ void admin_op() {
     }
 }
 
+// Function to tell if the ingredients are low
 void low_ingredients()
 {
     if (beans_amnt < LOW_BEANS)
@@ -127,6 +107,7 @@ void low_ingredients()
     }
 }
 
+// Admin menu function that displays admin options 
 void admin_menu() {
     while (true) {
         int admin_choice;
@@ -134,6 +115,7 @@ void admin_menu() {
         printf("1: Display ingredient quantities and total sales\n");
         printf("2: Replenish ingredients\n");
         printf("3: Change coffee prices\n");
+        printf("4: Display and reset total sales\n"); // New menu option
         printf("0: Exit Admin Mode\n");
         scanf("%d", &admin_choice);
 
@@ -144,13 +126,16 @@ void admin_menu() {
                 printf("Water: %d ml\n", water_amnt);
                 printf("Milk: %d ml\n", milk_amnt);
                 printf("Chocolate syrup: %d ml\n", choc_amnt);
-                printf("Total sales: %.2f AED\n", tot_sales);
+                printf("Total sales: %.2f AED\n", total_amount);
                 break;
             case 2:
                 replenish_ingredients();
                 break;
             case 3:
                 change_coffee_price();
+                break;
+            case 4:
+                display_and_reset_sales();
                 break;
             case 0:
                 printf("Exiting Admin Mode...\n");
@@ -161,6 +146,22 @@ void admin_menu() {
     }
 }
 
+// Function to display total sales and reset it if needed
+void display_and_reset_sales() {
+    printf("Total sales amount: %.2f AED\n", tot_sales);
+    printf("Would you like to reset total sales to zero? (1 for yes, 0 for no): ");
+    int reset_choice;
+    scanf("%d", &reset_choice);
+    
+    if (reset_choice == 1) {
+        tot_sales = 0.0;
+        printf("Total sales has been reset. Please collect the money from the machine.\n");
+    } else {
+        printf("Total sales remains unchanged.\n");
+    }
+}
+
+// Function to replenish ingredients with random quantities
 void replenish_ingredients() {
     srand(time(0));
     beans_amnt = rand() % 101 + 100;  // Random refill between 100 and 200
@@ -175,6 +176,7 @@ void replenish_ingredients() {
     printf("Chocolate syrup: %d ml\n", choc_amnt);
 }
 
+// Function to change coffee prices
 void change_coffee_price() {
     int coffee_choice;
     printf("Select the coffee type to change its price:\n");
@@ -201,12 +203,15 @@ void change_coffee_price() {
     printf("Prices updated successfully!\n");
 }
 
+// Function to display the coffee menu
 void menu() {
     printf("Menu: \n");
     printf("1) Espresso: %.2f AED\n", ESP_PRICE);
     printf("2) Cappuccino: %.2f AED\n", CAP_PRICE);
     printf("3) Mocha: %.2f AED\n", MOC_PRICE);
 }
+
+// Function to take user's coffee order with confirmation and payment 
 void user_order() {
     int order_choice;  // Variable to store user's coffee choice
 
@@ -299,6 +304,7 @@ void user_order() {
     }
 }
 
+// Function to show available coffee options
 void coff_availability() {
     if (beans_amnt >= ESP_BEANS && water_amnt >= ESP_WATER) {
         printf("1) Espresso: %.2f AED\n", ESP_PRICE);
@@ -323,6 +329,7 @@ void coff_availability() {
     }
 }
 
+// main function 
 int main() {
     while (true) {
         printf("Welcome to our coffee shop!\n");
