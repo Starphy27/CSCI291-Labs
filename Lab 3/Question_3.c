@@ -163,7 +163,7 @@ void add_player(team_t teams[], int num_teams) {
     if (scanf("%d", &new_player.kit_num) != 1) { // Check if input is a number
         clear_input_buffer();   // Clear input buffer
         handle_error("Invalid kit number."); // Handle error
-        return;
+        return; // Return from function
     }
     clear_input_buffer(); // Clear input buffer
 
