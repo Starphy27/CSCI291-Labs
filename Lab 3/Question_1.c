@@ -101,8 +101,8 @@ void remove_element(int array[], int length, int pos) {
         return;
     }
 
-    for (int i = pos; i < length - 1; i++) {
-        array[i] = array[i + 1];
+    for (int i = pos; i < length - 1; i++) { // 
+        array[i] = array[i + 1]; 
     }
     array[length - 1] = 0;  // Set last element to 0 after shifting
 }
